@@ -60,13 +60,13 @@ def upload_pdf(file: UploadFile = File(...)):
             buffer
         )
 
-    chunks = load_pdf(
-        file_path
-    )
+    chunks = load_pdf(file_path)
 
-    create_vector_store(
-        chunks
-    )
+    chunks = chunks[:10]
+
+    create_vector_store(chunks)
+
+
 
     return {
         "message": f"{file.filename} uploaded successfully",
