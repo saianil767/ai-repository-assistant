@@ -19,7 +19,7 @@ if st.button(
 ):
 
     response = requests.post(
-        "http://127.0.0.1:8000/process-repo",
+        "https://ai-repository-assistant.onrender.com/process-repo",
         json={
             "github_url": github_url
         }
@@ -69,7 +69,7 @@ if uploaded_file:
     }
 
     response = requests.post(
-        "http://127.0.0.1:8000/upload-pdf",
+        "https://ai-repository-assistant.onrender.com/upload-pdf",
         files=files
     )
 
@@ -109,7 +109,7 @@ if st.button(
     ):
 
         response = requests.post(
-            "http://127.0.0.1:8000/smart-query",
+            "https://ai-repository-assistant.onrender.com/smart-query",
             json={
                 "question": question
             }

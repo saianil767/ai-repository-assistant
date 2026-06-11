@@ -46,14 +46,27 @@ def query(request: QuestionRequest):
 @app.post("/upload-pdf")
 def upload_pdf(file: UploadFile = File(...)):
 
-    file_path = os.path.join("uploads", file.filename)
+    # Create uploads folder if it doesn't exist
+    os.makedirs("uploads", exist_ok=True)
+
+    file_path = os.path.join(
+        "uploads",
+        file.filename
+    )
 
     with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+        shutil.copyfileobj(
+            file.file,
+            buffer
+        )
 
-    chunks = load_pdf(file_path)
+    chunks = load_pdf(
+        file_path
+    )
 
-    create_vector_store(chunks)
+    create_vector_store(
+        chunks
+    )
 
     return {
         "message": f"{file.filename} uploaded successfully",
