@@ -1,9 +1,12 @@
-from langchain_huggingface import HuggingFaceEmbeddings
+import os
+
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import Chroma
 
 
-embedding_model = HuggingFaceEmbeddings(
-    model_name="all-MiniLM-L6-v2"
+embedding_model = GoogleGenerativeAIEmbeddings(
+    model="models/embedding-001",
+    google_api_key=os.getenv("GOOGLE_API_KEY")
 )
 
 
