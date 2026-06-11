@@ -13,7 +13,10 @@ github_url = st.text_input(
     "Enter GitHub Repository URL"
 )
 
-if st.button("Process Repository", key="process_repo_btn"):
+if st.button(
+    "Process Repository",
+    key="process_repo_btn"
+):
 
     response = requests.post(
         "http://127.0.0.1:8000/process-repo",
@@ -45,6 +48,48 @@ if st.button("Process Repository", key="process_repo_btn"):
         )
 
 # -----------------------------
+# Upload PDF
+# -----------------------------
+
+st.header("Upload PDF")
+
+uploaded_file = st.file_uploader(
+    "Choose a PDF",
+    type=["pdf"]
+)
+
+if uploaded_file:
+
+    files = {
+        "file": (
+            uploaded_file.name,
+            uploaded_file,
+            "application/pdf"
+        )
+    }
+
+    response = requests.post(
+        "http://127.0.0.1:8000/upload-pdf",
+        files=files
+    )
+
+    if response.status_code == 200:
+
+        st.success(
+            "PDF Uploaded Successfully"
+        )
+
+    else:
+
+        st.error(
+            f"Upload Failed: {response.status_code}"
+        )
+
+        st.text(
+            response.text
+        )
+
+# -----------------------------
 # Ask Questions
 # -----------------------------
 
@@ -54,9 +99,14 @@ question = st.text_input(
     "Ask a question"
 )
 
-if st.button("Submit", key="submit_question_btn"):
+if st.button(
+    "Submit",
+    key="submit_question_btn"
+):
 
-    with st.spinner("Thinking..."):
+    with st.spinner(
+        "Thinking..."
+    ):
 
         response = requests.post(
             "http://127.0.0.1:8000/smart-query",
@@ -70,10 +120,14 @@ if st.button("Submit", key="submit_question_btn"):
         data = response.json()
 
         st.subheader("Route")
-        st.write(data["route"])
+        st.write(
+            data["route"]
+        )
 
         st.subheader("Answer")
-        st.write(data["answer"])
+        st.write(
+            data["answer"]
+        )
 
     else:
 

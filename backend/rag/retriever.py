@@ -10,9 +10,13 @@ vectorstore = Chroma(
     embedding_function=embedding_model
 )
 
-retriever = vectorstore.as_retriever()
+retriever = vectorstore.as_retriever(
+    search_kwargs={"k": 20}
+)
 
 
 def retrieve_docs(question):
+
     docs = retriever.invoke(question)
+
     return docs
