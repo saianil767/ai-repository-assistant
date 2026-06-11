@@ -5,7 +5,7 @@ from langchain_community.vectorstores import Chroma
 
 
 embedding_model = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001",
+    model="text-embedding-004",
     google_api_key=os.getenv("GOOGLE_API_KEY")
 )
 
