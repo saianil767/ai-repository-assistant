@@ -10,12 +10,12 @@ embedding_model = GoogleGenerativeAIEmbeddings(
 )
 
 
-def create_vector_store(chunks):
+def create_code_vectorstore(documents):
 
     vectorstore = Chroma.from_documents(
-        documents=chunks,
+        documents=documents,
         embedding=embedding_model,
-        persist_directory="chroma_db"
+        persist_directory="code_db"
     )
 
     return vectorstore
