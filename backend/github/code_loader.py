@@ -11,8 +11,8 @@ def load_python_files(repo_path):
     documents = []
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=100
+        chunk_size=3000,
+        chunk_overlap=200
     )
 
     for root, dirs, files in os.walk(repo_path):
@@ -51,5 +51,5 @@ def load_python_files(repo_path):
                 except Exception:
 
                     pass
-
+    documents = documents[:30]
     return documents
