@@ -11,15 +11,15 @@ def load_python_files(repo_path):
     documents = []
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50
+        chunk_size=1000,
+        chunk_overlap=100
     )
 
     for root, dirs, files in os.walk(repo_path):
 
         for file in files:
 
-            if file.endswith(".py"):
+            if file.endswith(".py") or file == "README.md":
 
                 file_path = os.path.join(
                     root,

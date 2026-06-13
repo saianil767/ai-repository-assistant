@@ -17,7 +17,7 @@ def retrieve_code(question):
     )
 
     retriever = vectorstore.as_retriever(
-        search_kwargs={"k": 3}
+        search_kwargs={"k": 15}
     )
 
     docs = retriever.invoke(question)
